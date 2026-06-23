@@ -1,0 +1,225 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gold: #cba876;
+  --color-gold-hover: #e0c194;
+  --color-black: #050505;
+  --color-black-light: #0a0a0a;
+  --color-black-card: #121212;
+  --color-white: #fafafa;
+  
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+}
+
+body {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+
+.glass {
+  background: rgba(10, 10, 10, 0.45);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(203, 168, 118, 0.08);
+}
+
+.glass-premium {
+  background: linear-gradient(135deg, rgba(15, 15, 15, 0.65) 0%, rgba(5, 5, 5, 0.8) 100%);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(203, 168, 118, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+/* Subtle luxury gradient */
+.gold-gradient {
+  background: linear-gradient(135deg, #f3dca3 0%, #cba876 50%, #a18151 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #e0c194 0%, #cba876 50%, #b38f59 100%);
+}
+
+.subtle-gradient-bg {
+  background: radial-gradient(circle at center, rgba(203, 168, 118, 0.08) 0%, rgba(5, 5, 5, 0) 70%);
+}
+
+.border-gradient {
+  border-image: linear-gradient(to right, transparent, rgba(203, 168, 118, 0.2), transparent) 1;
+}
+
+.premium-whatsapp-btn {
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.95), rgba(23, 154, 74, 0.95)), #25d366;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 0 30px rgba(37, 211, 102, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-whatsapp-btn:hover {
+  transform: translateY(-3px);
+  filter: saturate(1.08);
+  box-shadow: 0 10px 40px rgba(37, 211, 102, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.premium-outline-btn {
+  color: #cba876;
+  background: rgba(5, 5, 5, 0.42);
+  border: 1px solid rgba(203, 168, 118, 0.48);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-outline-btn:hover {
+  color: #050505;
+  background: #cba876;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 36px rgba(203, 168, 118, 0.24);
+}
+
+.premium-solid-btn {
+  color: #050505;
+  background: linear-gradient(135deg, #e0c194 0%, #cba876 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 25px rgba(203, 168, 118, 0.15);
+  transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-solid-btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #ecd6b2 0%, #e0c194 100%);
+  box-shadow: 0 15px 35px rgba(203, 168, 118, 0.35);
+}
+
+.luxury-map-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 26px;
+  border: 1px solid rgba(203, 168, 118, 0.18);
+  background: rgba(5, 5, 5, 0.72);
+  box-shadow: 0 34px 90px rgba(0, 0, 0, 0.54), 0 0 42px rgba(203, 168, 118, 0.08);
+  transition: transform 700ms ease, border-color 700ms ease, box-shadow 700ms ease;
+}
+
+.luxury-map-frame:hover {
+  transform: translateY(-5px);
+  border-color: rgba(203, 168, 118, 0.34);
+  box-shadow: 0 42px 110px rgba(0, 0, 0, 0.62), 0 0 58px rgba(203, 168, 118, 0.12);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-black);
+}
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 4px;
+  border: 2px solid var(--color-black);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+/* Hide scrollbar for reels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Animated gold background glows */
+.bg-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(203, 168, 118, 0.05) 0%, rgba(0,0,0,0) 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gold-pulse-ring {
+  box-shadow: 0 0 0 0 rgba(203, 168, 118, 0.4);
+  animation: pulseGold 2s infinite;
+}
+
+@keyframes pulseGold {
+  0% {
+    box-shadow: 0 0 0 0 rgba(203, 168, 118, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(203, 168, 118, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(203, 168, 118, 0);
+  }
+}
+
+/* Masonry layout adjustments */
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-auto-rows: 240px;
+  gap: 16px;
+}
+
+.masonry-item-tall {
+  grid-row: span 2;
+}
+
+.masonry-item-wide {
+  grid-column: span 2;
+}
+
+@media (max-width: 640px) {
+  .masonry-item-wide {
+    grid-column: span 1;
+  }
+}
+
+/* Custom form inputs styling */
+.premium-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(10, 10, 10, 0.6);
+  border: 1px solid rgba(203, 168, 118, 0.15);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: all 300ms ease;
+}
+
+.premium-input:focus {
+  border-color: var(--color-gold);
+  background: rgba(15, 15, 15, 0.85);
+  box-shadow: 0 0 15px rgba(203, 168, 118, 0.1);
+}
+
+.premium-input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.premium-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23cba876'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  background-size: 16px;
+}
