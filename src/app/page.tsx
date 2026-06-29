@@ -41,12 +41,60 @@ const salonDetails = {
 
 // Signature highlight services to showcase on Homepage
 const signatureServices = [
-  { id: 1, name: "Precision Cuts & Blowouts", price: "from ₹199", image: "/service_haircut.png", description: "Bespoke styling and structural cuts from our master stylists." },
-  { id: 2, name: "Luxury Beard Styling", price: "from ₹149", image: "/service_beard.png", description: "Sharp neck lining, razor trim, and organic beard conditioning." },
-  { id: 3, name: "Premium Facials & Therapy", price: "from ₹499", image: "/service_facial.png", description: "Vortex exfoliation and deep tissue nourishment for brilliant skin." },
-  { id: 4, name: "Nourishing Hair Spa Treatments", price: "from ₹999", image: "/service_hair_spa.png", description: "Molecular protein repair therapies and hot-oil hair massage." },
-  { id: 5, name: "Bridal & Groom Makeovers", price: "from ₹2000", image: "/service_bridal.png", description: "Ultra-HD airbrush styling for your special life milestones." },
-  { id: 6, name: "Elite Nail Extensions & Art", price: "from ₹499", image: "/service_nails.png", description: "Sleek poly-gel modeling and precision hand-painted graphics." }
+  {
+    id: 1,
+    name: "Precision Cuts & Blowouts",
+    startingPrice: "199",
+    duration: "45 mins",
+    image: "/service_haircut.png",
+    description: "Bespoke styling and structural cuts from our master stylists.",
+    popularChips: ["Advanced Cut", "Blow Dry", "Hair Wash"]
+  },
+  {
+    id: 2,
+    name: "Luxury Beard Styling",
+    startingPrice: "149",
+    duration: "30 mins",
+    image: "/service_beard.png",
+    description: "Sharp neck lining, razor trim, and organic beard conditioning.",
+    popularChips: ["Beard Setting", "Razor Trim", "Hot Towel Shave"]
+  },
+  {
+    id: 3,
+    name: "Premium Facials & Therapy",
+    startingPrice: "499",
+    duration: "60 mins",
+    image: "/service_facial.png",
+    description: "Vortex exfoliation and deep tissue nourishment for brilliant skin.",
+    popularChips: ["Hydra Facial", "Glow Facial", "Skin Nourishing"]
+  },
+  {
+    id: 4,
+    name: "Nourishing Hair Spa Treatments",
+    startingPrice: "999",
+    duration: "60 mins",
+    image: "/service_hair_spa.png",
+    description: "Molecular protein repair therapies and hot-oil hair massage.",
+    popularChips: ["Keratin Spa", "Loreal Protein", "Matrix Spa"]
+  },
+  {
+    id: 5,
+    name: "Bridal & Groom Makeovers",
+    startingPrice: "2000",
+    duration: "120 mins",
+    image: "/service_bridal.png",
+    description: "Ultra-HD airbrush styling for your special life milestones.",
+    popularChips: ["Bridal Makeup", "Party Makeup", "Groom Styling"]
+  },
+  {
+    id: 6,
+    name: "Elite Nail Extensions & Art",
+    startingPrice: "499",
+    duration: "45 mins",
+    image: "/service_nails.png",
+    description: "Sleek poly-gel modeling and precision hand-painted graphics.",
+    popularChips: ["Poly-gel Art", "Nail Extension", "Gel Polish"]
+  }
 ];
 
 const galleryImages = [
@@ -377,7 +425,7 @@ export default function SalonLanding() {
           </div>
           
           {/* Services Visual Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
             {signatureServices.map((service, i) => (
               <motion.div 
                 key={service.id}
@@ -385,58 +433,110 @@ export default function SalonLanding() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.8, delay: i * 0.08 }}
-                className="group relative aspect-[4/5] overflow-hidden rounded-3xl border border-white/5 hover:border-[#cba876]/30 bg-[#0a0a0a] transition-colors duration-500"
+                className="group relative flex flex-col overflow-hidden rounded-[28px] border border-white/5 hover:border-[#cba876]/30 bg-[#0a0a0a] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.7),_0_0_30px_rgba(203,168,118,0.08)]"
               >
-                <Image 
-                  src={service.image} 
-                  alt={service.name} 
-                  fill 
-                  className="object-cover transition-transform duration-1000 group-hover:scale-105 grayscale-[15%] opacity-75 group-hover:opacity-90" 
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-                
-                {/* Glow Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-85 group-hover:opacity-90 transition-opacity duration-500"></div>
+                {/* Large Service Image (16:9 ratio) */}
+                <div className="relative w-full aspect-[16/9] overflow-hidden bg-black/40">
+                  <Image 
+                    src={service.image} 
+                    alt={service.name} 
+                    fill 
+                    className="object-cover transition-transform duration-1000 group-hover:scale-105 grayscale-[15%] opacity-85 group-hover:opacity-100" 
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent"></div>
+                </div>
                 
                 {/* Text Content */}
-                <div className="absolute inset-0 p-8 flex flex-col justify-end space-y-3">
-                  <div className="space-y-1">
-                    <span className="text-[8px] uppercase tracking-[0.3em] text-[#cba876] font-semibold">{service.price}</span>
-                    <h3 className="text-xl md:text-2xl font-serif text-white tracking-wide group-hover:text-[#cba876] transition-colors">{service.name}</h3>
+                <div className="flex flex-col flex-grow p-6 md:p-8 space-y-5 justify-between">
+                  <div className="space-y-4">
+                    {/* Service Name */}
+                    <h3 className="text-xl md:text-2xl font-serif text-white tracking-wide group-hover:text-[#cba876] transition-colors leading-tight">
+                      {service.name}
+                    </h3>
+                    
+                    {/* Short 1-Line Description */}
+                    <p className="text-gray-400 font-light text-xs md:text-sm leading-relaxed line-clamp-1">
+                      {service.description}
+                    </p>
+
+                    {/* Price and Duration Details Row */}
+                    <div className="flex items-center justify-between pt-1 gap-2">
+                      <div className="space-y-0.5">
+                        <span className="block text-[8px] md:text-[9px] uppercase tracking-wider text-gray-500 font-medium">Starting From</span>
+                        <span className="text-xl md:text-2xl font-bold font-serif text-[#cba876] tracking-wide">
+                          ₹{service.startingPrice}
+                        </span>
+                      </div>
+                      {service.duration && (
+                        <div className="flex items-center gap-1.5 text-gray-400 text-[10px] md:text-xs bg-white/5 border border-white/10 px-3 py-1.5 rounded-full shrink-0">
+                          <Clock size={12} className="text-[#cba876]" />
+                          <span>{service.duration}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Popular Chips Badges */}
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {service.popularChips.map((chip, idx) => (
+                        <span 
+                          key={idx} 
+                          className="text-[9px] md:text-[10px] uppercase tracking-wider bg-white/5 border border-white/10 text-gray-300 px-2.5 py-1 rounded-full font-medium"
+                        >
+                          {chip}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <p className="text-gray-400 font-light text-xs leading-relaxed line-clamp-2 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                    {service.description}
-                  </p>
-                  <div className="pt-2 flex justify-between items-center">
+
+                  {/* Book on WhatsApp Button */}
+                  <div className="pt-4">
                     <button 
                       onClick={() => handleWhatsAppInquiry(service.name)}
-                      className="text-[9px] uppercase tracking-[0.2em] text-[#cba876] group-hover:text-white font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+                      className="w-full premium-solid-btn py-3.5 text-[10px] uppercase tracking-[0.25em] font-bold flex items-center justify-center gap-2 rounded-xl cursor-pointer"
                     >
-                      WhatsApp Now
+                      <MessageCircle size={14} className="shrink-0" />
+                      <span>Book on WhatsApp</span>
                     </button>
-                    <span className="h-7 w-7 rounded-full border border-white/10 flex items-center justify-center text-white transform translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 bg-black/40">
-                      <ArrowUpRight size={12} />
-                    </span>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Luxury CTA to Pricing Page */}
-          <div className="mt-16 text-center">
-            <Link 
-              href="/pricing"
-              className="inline-flex items-center gap-4 bg-[#0a0a0a] hover:bg-black border border-[#cba876]/30 hover:border-[#cba876] transition-all duration-500 px-8 py-5 rounded-2xl shadow-xl group cursor-pointer"
-            >
-              <div className="text-left">
-                <span className="block text-[8px] uppercase tracking-[0.25em] text-[#cba876] font-semibold">Full Treatment Catalogue</span>
-                <span className="block text-xs font-serif text-white mt-1 group-hover:text-[#cba876] transition-colors">Explore Interactive Price List (50+ Services)</span>
+          {/* Premium Complete Price List Section */}
+          <div className="mt-24 max-w-4xl mx-auto text-center px-6">
+            <div className="bg-gradient-to-b from-[#0a0a0a] to-[#030303] border border-[#cba876]/20 p-8 md:p-12 rounded-[32px] shadow-2xl relative overflow-hidden group">
+              {/* Subtle background glows */}
+              <div className="absolute -top-24 -left-24 w-80 h-80 bg-[#cba876]/5 blur-[80px] rounded-full pointer-events-none"></div>
+              <div className="absolute -bottom-24 -right-24 w-80 h-80 bg-[#cba876]/5 blur-[80px] rounded-full pointer-events-none"></div>
+              <div className="absolute -inset-px rounded-[32px] bg-gradient-to-b from-[#cba876]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+
+              <div className="relative z-10 space-y-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#cba876]/10 border border-[#cba876]/20 mx-auto">
+                  <Sparkles size={12} className="text-[#cba876]" />
+                  <span className="text-[9px] uppercase tracking-[0.25em] text-[#cba876] font-semibold">Treatment Catalogue</span>
+                </div>
+                
+                <h3 className="text-3xl md:text-4xl font-serif text-white tracking-wide uppercase">
+                  Complete Price List
+                </h3>
+                
+                <p className="text-gray-400 font-light text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+                  Browse our comprehensive, interactive pricing menu featuring over 50+ bespoke luxury grooming and therapeutic treatments tailored to your precise styling needs.
+                </p>
+
+                <div className="pt-4">
+                  <Link 
+                    href="/pricing"
+                    className="inline-flex items-center gap-3 bg-[#cba876] hover:bg-[#e0c194] text-black font-semibold text-xs md:text-sm uppercase tracking-[0.25em] px-10 py-5 rounded-full shadow-[0_10px_25px_rgba(203,168,118,0.2)] hover:shadow-[0_15px_35px_rgba(203,168,118,0.4)] transition-all duration-300 hover:-translate-y-0.5"
+                  >
+                    <span>View Full Price List</span>
+                    <ChevronRight size={16} />
+                  </Link>
+                </div>
               </div>
-              <span className="p-2.5 rounded-full bg-[#cba876]/10 border border-[#cba876]/30 text-[#cba876] group-hover:scale-105 transition-transform">
-                <ChevronRight size={16} />
-              </span>
-            </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -851,14 +951,6 @@ export default function SalonLanding() {
         </div>
       </footer>
 
-      {/* WhatsApp Corner Floating Button with custom gold-glow class */}
-      <button
-        onClick={() => handleWhatsAppInquiry()}
-        aria-label="Chat with The Glam Unisex Salon on WhatsApp"
-        className="fixed bottom-6 right-6 z-40 flex h-15 w-15 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_0_20px_rgba(37,211,102,0.25)] hover:shadow-[0_0_30px_#cba876] transition-all duration-400 hover:-translate-y-1 hover:scale-105 gold-pulse-ring cursor-pointer"
-      >
-        <MessageCircle size={26} />
-      </button>
 
       {/* Mobile Sticky CTA Bar */}
       <div className="fixed bottom-0 inset-x-0 bg-black/85 backdrop-blur-lg border-t border-[#cba876]/15 py-3.5 px-6 flex items-center justify-between z-30 lg:hidden">
